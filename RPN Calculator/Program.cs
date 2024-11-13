@@ -46,6 +46,7 @@ class RpnCalculator
             else if (tk == "-") x -= y;
             else if (tk == "*") x *= y;
             else if (tk == "/") x /= y;
+            else if (tk == "^") x = Math.Pow(x, y);
             else throw new Exception();
         }
         return x;
