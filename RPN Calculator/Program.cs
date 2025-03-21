@@ -15,7 +15,7 @@ while (true)
 
 
 
-class RpnCalculator
+internal static class RpnCalculator
 {
     /// <summary>
     /// Reads an arithmetic string in space delimited RPN format (1 2 +) and returns the evaluation
@@ -64,7 +64,7 @@ class RpnCalculator
     }
 }
 
-class ShuntingYard
+internal static class ShuntingYard
 {
     private static readonly string Operators = "+-*/^";
     private static readonly string Numbers = "1234567890";
@@ -229,13 +229,11 @@ class ShuntingYard
     /// </summary>
     /// <param name="output">Target output list of chars</param>
     /// <param name="chars">Input list of chars (nullable)</param>
-    public static void AddToOutput(List<char> output, params char[]? chars)
+    private static void AddToOutput(List<char> output, params char[]? chars)
     {
-        if (chars != null && chars.Length > 0)
-        {
-            output.AddRange(chars);
-            output.Add(' '); // Add space after as delimiter. Useful for reading later.
-        }
+        if (chars is not { Length: > 0 }) return;
+        output.AddRange(chars);
+        output.Add(' '); // Add space after as delimiter. Useful for reading later.
     }
 
     /// <summary>
